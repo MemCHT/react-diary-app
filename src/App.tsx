@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {FC} from 'react';
+import { Route, Switch, useHistory } from 'react-router';
+import { colors, Grid, CssBaseline } from '@material-ui/core';
+import { ThemeProvider, createMuiTheme, createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-function App() {
+import Header from 'components/organisms/Header';
+import Counter from 'components/organisms/Counter';
+import Body from 'components/pages/Body';
+import DiaryIndex from 'containers/organisms/Diary/DiaryIndex';
+import DiaryCreate from 'containers/organisms/Diary/DiaryCreate';
+import Calendar from 'containers/molecules/Calendar';
+import Login from 'containers/pages/Login';
+import Register from 'containers/pages/Register';
+import Auth from 'Auth';
+
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="App">
+      <Header />
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+      
+        <Body>
+          <Route path="/counter" component={Counter} />
+
+          <Route path="/test">
+            おｋ
+          </Route>
+
+          <Auth>
+            <Route exact path="/diaries" component={DiaryIndex} />
+            <Route path="/diaries/create" component={DiaryCreate} />
+          </Auth>
+          <Route path="/calendar" component={Calendar} />
+        </Body>
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
