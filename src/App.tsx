@@ -12,6 +12,7 @@ import Calendar from 'containers/molecules/Calendar';
 import Login from 'containers/pages/Login';
 import Register from 'containers/pages/Register';
 import Auth from 'Auth';
+import DiaryEdit from 'containers/organisms/Diary/DiaryEdit';
 
 const App: FC = () => {
   return (
@@ -31,6 +32,7 @@ const App: FC = () => {
           <Auth>
             <Route exact path="/diaries" component={DiaryIndex} />
             <Route path="/diaries/create" component={DiaryCreate} />
+            <Route path="/diaries/:id/edit" component={DiaryEdit} />
           </Auth>
           <Route path="/calendar" component={Calendar} />
         </Body>

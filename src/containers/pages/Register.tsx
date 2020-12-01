@@ -63,7 +63,7 @@ const Register: FC = () => {
         
         dispatch(register(value.user));
 
-        alert('登録できました！\n'+JSON.stringify(value.user));
+        alert('登録できました！\n');
 
         history.push('/diaries');
 

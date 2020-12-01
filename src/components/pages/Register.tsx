@@ -48,7 +48,7 @@ const Register: FC<Props> = ({handleChange, handleSubmitRegister, handleBlur, va
 
             <form onSubmit={handleSubmitRegister} className={styles.formGroup}>
               <TextField id="email" type="email" name="email" onChange={handleChange} label="メールアドレス" variant='outlined' fullWidth placeholder="example@example.com" {...(validation?.email)} required />
-              <Typography>{JSON.stringify(validation)}</Typography>
+              {/*<Typography>{JSON.stringify(validation)}</Typography>*/}
               <TextField id="password" type="password" name="password" onChange={handleChange} onBlur={handleBlur} label="パスワード" variant='outlined' fullWidth placeholder="hogehoge" {...(validation?.password)} required />
               <TextField id="passwordConfirm" type="password" name="password_confirm" onChange={handleChange} onBlur={handleBlur} label="パスワード（確認）" variant='outlined' fullWidth placeholder="hogehoge" {...validation?.passwordConfirm} required />
               <Button id="registerButton" type="submit" variant='contained'>新規登録</Button>

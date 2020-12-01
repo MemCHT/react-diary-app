@@ -11,14 +11,26 @@ import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
     toolbar: {
-      borderBottom: `1px solid ${theme.palette.divider}`
+			borderBottom: `1px solid ${theme.palette.divider}`,
+			display: 'flex',
     },
     toolbarTitle: {
       flex: 1,
         textAlign: 'center',
 		},
 		toolbarButton: {
-			width: '10em'
+			width: '10em',
+			margin: '0 0.5em'
+		},
+		toolbarLeft: {
+			flex: 1,
+		},
+		toolbarCenter: {
+			flex: 1,
+		},
+		toolbarRight: {
+			flex: 1,
+			textAlign: "right"
 		}
 
 }));
@@ -33,41 +45,47 @@ const Header: FC = () => {
 			<Grid container justify="center">
 				<Grid item xs={10}>
 					<Toolbar className={styles.toolbar}>
-						<Button variant="outlined" href="#" className={styles.toolbarButton}>
-							ホーム
-						</Button>
+						<div className={styles.toolbarLeft}>
+							<Button variant="outlined" href="#" className={styles.toolbarButton}>
+								ホーム
+							</Button>
+						</div>
 
-						<Typography
-							component="h1"
-							variant="h4"
-							className={styles.toolbarTitle}
-						>
-							タイトル
-						</Typography>
+						<div className={styles.toolbarCenter}>
+							<Typography
+								component="h1"
+								variant="h4"
+								className={styles.toolbarTitle}
+							>
+								Diary-app
+							</Typography>
+						</div>
 
-						{
-							// 必ず後でリファクタリングすること。具体的にはコンテナに分けて、親コンポーネントで使うのをコンテナの方に変更
-							user
-							?	<Button variant="outlined" href="/login" onClick={(event)=>{
-								event.preventDefault();
+						<div className={styles.toolbarRight}>
+							{
+								// 必ず後でリファクタリングすること。具体的にはコンテナに分けて、親コンポーネントで使うのをコンテナの方に変更
+								user
+								?	<Button variant="outlined" href="/login" onClick={(event)=>{
+									event.preventDefault();
 
-								auth.signOut().then(()=>{
-									alert("ログアウトしました");
-									dispatch(logout());
-									history.push('/login');
-								})
-							}} className={styles.toolbarButton}>
-									ログアウト
-								</Button>
-							:	<div>
-									<Button variant="outlined" href="/login" className={styles.toolbarButton}>
-										ログイン
+									auth.signOut().then(()=>{
+										alert("ログアウトしました");
+										dispatch(logout());
+										history.push('/login');
+									})
+								}} className={styles.toolbarButton}>
+										ログアウト
 									</Button>
-									<Button variant="outlined" href="/register" className={styles.toolbarButton}>
-										新規登録
-									</Button>
-								</div>
-						}
+								:	<>
+										<Button variant="outlined" href="/login" className={styles.toolbarButton}>
+											ログイン
+										</Button>
+										<Button variant="outlined" href="/register" className={styles.toolbarButton}>
+											新規登録
+										</Button>
+									</>
+							}
+						</div>
 					</Toolbar>
 				</Grid>
 			</Grid>

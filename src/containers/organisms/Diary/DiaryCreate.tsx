@@ -18,20 +18,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-/*const handleOnSubmit = (history: History<unknown>): Props['handleOnSubmit'] => {
-  
-  return  
-}*/
-
 const getFormatDate = (date: Date) => (
-  `${date.getFullYear()}/${date.getMonth()}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+  `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 );
-
-/*const varidateDiaryModel = (data: FormData) => {
-  data.forEach((value, key)=>{
-    if(typeof value in DiaryModel)
-  });
-}*/
 
 const DiaryCreate: FC = () => {
 
@@ -65,7 +54,7 @@ const DiaryCreate: FC = () => {
   
     database.collection("diaries").add(diary)
     .then((docRef) => {
-      // alert("Document written with ID: " + docRef.id);
+      alert("日記を作成しました！");
       history.push("/diaries");
     })
     .catch((error) => alert("Error adding documet: " + error));
