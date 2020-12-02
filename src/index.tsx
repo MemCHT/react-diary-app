@@ -35,13 +35,13 @@ const classes = makeStyles((theme: Theme) =>
 ReactDOM.render(               
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <React.StrictMode>
+    {/*<React.StrictMode>*/}
       <Provider store={store}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </Provider>
-    </React.StrictMode>
+    {/*</React.StrictMode>*/}
   </ThemeProvider>,
   document.getElementById('root')
 );

@@ -19,23 +19,25 @@ const App: FC = () => {
     <div id="App">
       <Header />
       <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      
-        <Body>
-          <Route path="/counter" component={Counter} />
+        <React.Fragment>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+        
+          <Body>
+            <Route path="/counter" component={Counter} />
 
-          <Route path="/test">
-            おｋ
-          </Route>
+            <Route path="/test">
+              おｋ
+            </Route>
 
-          <Auth>
-            <Route exact path="/diaries" component={DiaryIndex} />
-            <Route path="/diaries/create" component={DiaryCreate} />
-            <Route path="/diaries/:id/edit" component={DiaryEdit} />
-          </Auth>
-          <Route path="/calendar" component={Calendar} />
-        </Body>
+            <Auth>
+              <Route exact path="/diaries" component={DiaryIndex} />
+              <Route path="/diaries/create" component={DiaryCreate} />
+              <Route path="/diaries/:id/edit" component={DiaryEdit} />
+            </Auth>
+            <Route path="/calendar" component={Calendar} />
+          </Body>
+        </React.Fragment>
       </Switch>
     </div>
   );

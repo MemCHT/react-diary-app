@@ -9,44 +9,13 @@ import { timestampToDateRecursively } from 'helpers/ForFirestore';
 
 import { AuthState } from 'reducer';
 import DiaryIndexComponent, {Data as DataType, Props as DiaryIndexProps} from 'components/organisms/Diary/DiaryIndex';
+import Loading from 'components/atoms/Loading';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
 
   },
 }));
-
-const loading_data: DataType[] = [
-  {
-    id: 1,
-    user_id: "example@example.com",
-    title: 'ロード中です...',
-    subheader: 'yyyy/mm/dd',
-    body: 'ロード中です...',
-    image: 'logo192.png',
-    created_at: new Date('yyyy/mm/dd'),
-    updated_at: new Date('yyyy/mm/dd')
-  },
-  {
-    id: 2,
-    user_id: "example@example.com",
-    title: 'ロード中です...',
-    subheader: 'yyyy/mm/dd',
-    body: 'ロード中です...',
-    image: 'logo192.png',
-    created_at: new Date('yyyy/mm/dd'),
-    updated_at: new Date('yyyy/mm/dd')
-  },{
-    id: 3,
-    user_id: "example@example.com",
-    title: 'ロード中です...',
-    subheader: 'yyyy/mm/dd',
-    body: 'ロード中です...',
-    image: 'logo192.png',
-    created_at: new Date('yyyy/mm/dd'),
-    updated_at: new Date('yyyy/mm/dd')
-  },
-]
 
 const DiaryIndex: FC = () => {
 
@@ -69,7 +38,7 @@ const DiaryIndex: FC = () => {
         
 
         const diaries = querySnapshot.docs.map(doc => {
-          
+
           // firestoreのdataはfirestore.Timestamp型なので、jsのdateに変換する必要がある。
           const data = timestampToDateRecursively(doc.data());
           return Object.assign(data, {id: doc.id}) as DataType;
@@ -114,7 +83,7 @@ const getData = (data: DataType[] | undefined, handleClickEdit: DiaryIndexProps[
   if(data){
     return <DiaryIndexComponent diaries={data as DataType[]} handleClickEdit={handleClickEdit} handleClickDestroy={handleClickDestroy}/>;
   }
-  return <DiaryIndexComponent diaries={loading_data}/>;
+  return <Loading/>;
 }
 
 export default DiaryIndex;

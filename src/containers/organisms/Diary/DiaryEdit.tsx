@@ -12,6 +12,7 @@ import DiaryEditComponent, {Props as DiaryEditComponentProps} from 'components/o
 import {Diary as DiaryModel} from 'config/Models';
 import { format } from 'path';
 import { Diary } from 'config/ViewModels';
+import { resolve } from 'url';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -80,7 +81,7 @@ const DiaryEdit: FC = () => {
       alert("編集を完了しました！");
       history.push("/diaries");
     })
-    .catch((error) => alert("Error adding documet: " + error));
+    .catch((error) => alert("Error adding document: " + error));
   }
 
   const [diary, setDiary] = useState<DiaryModel>();
@@ -88,13 +89,18 @@ const DiaryEdit: FC = () => {
   useEffect(()=>{
     database.collection("diaries").doc(id).get()
     .then((doc)=>{
-      const exist_diary = doc.data();
-      // alert("get diaries!: "+JSON.stringify(exist_diary));
-      setDiary(exist_diary as DiaryModel);  // 未だに取得してきたデータの型を設定する方法がわからない。
+      const exist_diary = doc.data() as DiaryModel;
+
+      if(user && exist_diary.user_id == user.uid)
+        setDiary(exist_diary as DiaryModel);
+      else if(user && exist_diary.user_id != user.uid)
+        return Promise.reject(new Error('不正なユーザーです'));
+
     }).catch((error)=>{
       alert(error);
+      history.push('/diaries');
     })
-  },[]);
+  },[user]);
 
   /**
    * フォームの場合、ステートをvalueに渡す場合はonChangeで設定してあげないとテキストを変更できない。

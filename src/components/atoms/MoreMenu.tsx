@@ -82,8 +82,8 @@ export const MoreMenu: FC<Props> = ({items}) => {
         onClose={handleClose}
       >
         {
-          items.map((item)=>(
-            <StyledMenuItem onClick={item.action}>
+          items.map((item: Props['items'][0], key)=>(
+            <StyledMenuItem onClick={item.action} key={key}>
               <ListItemIcon>
                 {item.listItem}
               </ListItemIcon>

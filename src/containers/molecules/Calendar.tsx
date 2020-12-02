@@ -19,17 +19,50 @@ const data = {
     [19, 20, 21, 22, 23, 24, 25],
     [26, 27, 28, 29, 30, 31],
   ],
-  maxDay: 31
+  max_day: 31
+};
+
+const getCalendarData = () => {
+  const now = new Date();
+  const today = now.getDate();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const days = getDays(now, year, month);
+  const max_day = new Date(year, month+1, 0, 0, 0, 0, 0).getDate();
+
+  return {month: month, days: days, max_day: max_day, today: today};
+}
+
+const getDays = (now: Date, year: number, month: number): Array<Array<number>> => {
+
+  // 最初の日付
+  let date = 1;
+  const days: Array<Array<number>> = new Array<Array<number>>(6);
+
+  for(let i = 0; i < days.length; i++){
+    const week: Array<number> = new Array<number>(7);
+
+    for(let j = 0; j < week.length; j++){
+      const current_date = new Date(year, month, date);
+      
+      if(current_date.getDay() == j)
+        week[j] = date++;
+      else
+        week[j] = -1;
+      // alert(`date: ${date},day: ${current_date.getDay()}`);
+    }
+
+    days[i] = week;
+  }
+  
+  return days;
 }
 
 const Calendar: FC = () => {
+  // alert(JSON.stringify(getCalendarData()));
 
   return (
-    <CalendarComponent
-      month={data.month}
-      days={data.days}
-      maxDay={data.maxDay}
-    />
+    <CalendarComponent {...getCalendarData()}/>
   );
 }
 

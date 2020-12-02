@@ -5,33 +5,41 @@ import { sizing } from '@material-ui/system';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-
+    padding: '0.0625em'
   },
   cardContent: {
     padding: 0,
+    paddingBottom: '0px !important'
   },
   paper: {
     height: '100%',
     width: '100%',
     paddingBottom: 'calc(100% - 1.5em)',
+    textAlign: 'center',
+  },
+  today: {
+    color: theme.palette.primary.light,
   }
 }));
 
 type Props = {
   day: number;
-  maxDay: number;
+  max_day: number;
+  today: number;
 }
 
-const CalendarDay: FC<Props> = ({day, maxDay}) => {
+const CalendarDay: FC<Props> = ({day, max_day, today}) => {
 
   const styles = useStyles();
 
-  if(1 <= day && day <= maxDay){
+  if(1 <= day && day <= max_day){
     return (
-      <Card>
+      <Card className={styles.root}>
         <CardContent className={styles.cardContent}>
           <Paper className={styles.paper}>
-            {day}
+            <span className={day == today ? styles.today : ''}>
+              {day}
+            </span>
           </Paper>
         </CardContent>
       </Card>

@@ -57,7 +57,7 @@ const Register: FC = () => {
 
       auth.createUserWithEmailAndPassword(email, password)
       .then((value) => {
-
+        
         if(value.user === null)
           throw new Error("Wrong data received");
         
