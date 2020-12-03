@@ -54,7 +54,7 @@ const DiaryCreate: FC = () => {
   
     database.collection("diaries").add(diary)
     .then((docRef) => {
-      alert("日記を作成しました！");
+      // alert("日記を作成しました！");
       history.push("/diaries");
     })
     .catch((error) => alert("Error adding documet: " + error));

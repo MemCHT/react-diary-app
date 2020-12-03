@@ -47,7 +47,9 @@ const Header: FC = () => {
 					<Grid item xs={10}>
 						<Toolbar className={styles.toolbar}>
 							<div className={styles.toolbarLeft}>
-								<Button variant="outlined" href="#" className={styles.toolbarButton}>
+								<Button variant="outlined" className={styles.toolbarButton}
+									onClick={()=>{history.push('/diaries')}}
+								>
 									ホーム
 								</Button>
 							</div>
@@ -78,10 +80,14 @@ const Header: FC = () => {
 											ログアウト
 										</Button>
 									:	<>
-											<Button variant="outlined" href="/login" className={styles.toolbarButton}>
+											<Button variant="outlined" className={styles.toolbarButton}
+												onClick={()=>{history.push('/login')}}
+											>
 												ログイン
 											</Button>
-											<Button variant="outlined" href="/register" className={styles.toolbarButton}>
+											<Button variant="outlined" className={styles.toolbarButton}
+												onClick={()=>{history.push('/register')}}
+											>
 												新規登録
 											</Button>
 										</>

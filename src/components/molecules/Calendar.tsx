@@ -45,11 +45,11 @@ const Calendar: FC<Props> = ({month, cellHeight=20, days, max_day, today}) => {
           <CardContent>
             <GridList cellHeight="auto" cols={7}>
               {['日','月','火','水','木','金','土'].map((day)=>(
-                <GridListTile><Paper className={styles.week}>{day}</Paper></GridListTile>
+                <GridListTile key={'week_'+day}><Paper className={styles.week}>{day}</Paper></GridListTile>
               ))}
               {days.map((week)=>(
-                week.map((day)=>(
-                  <GridListTile>
+                week.map((day, index)=>(
+                  <GridListTile key={'day_'+index}>
 
                     <CalendarDay
                       day={day}

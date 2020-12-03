@@ -51,10 +51,13 @@ const DiaryEdit: FC = () => {
   const user = useSelector<AuthState, firebase.User|undefined>((state) => state.user);
 
   const handleOnSubmit: DiaryEditComponentProps['handleOnSubmit'] = (event) => {
+    event.preventDefault();
+
     if(user == undefined)
       throw new Error("ログインしていません");
+    if(window.confirm('編集を完了しますか？') === false)
+      return;
 
-    event.preventDefault();
     const data = new FormData(event.target as HTMLFormElement);
     const today = new Date();
   
@@ -78,16 +81,16 @@ const DiaryEdit: FC = () => {
   
     database.collection("diaries").doc(submitDiary.id).update(submitDiary)
     .then((docRef) => {
-      alert("編集を完了しました！");
-      history.push("/diaries");
+      alert('編集を完了しました！');
+      history.push('/diaries');
     })
-    .catch((error) => alert("Error adding document: " + error));
+    .catch((error) => alert('Error adding document: ' + error));
   }
 
   const [diary, setDiary] = useState<DiaryModel>();
 
   useEffect(()=>{
-    database.collection("diaries").doc(id).get()
+    database.collection('diaries').doc(id).get()
     .then((doc)=>{
       const exist_diary = doc.data() as DiaryModel;
 

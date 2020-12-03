@@ -6,7 +6,7 @@ import {Home as HomeIcon, List as ListIcon, Bookmarks as BookmarksIcon, Person a
 
 
 const listItems = {
-	'home': ['ホーム', '#'],
+	'home': ['ホーム', '/diaries'],
 	'index': ['一覧', '/diaries'],
 	'bookmark': ['ブックマーク', '#'],
 	'mypage': ['マイページ', '#']
@@ -36,13 +36,14 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 const SideMenu: FC = () => {
 	const styles = useStyles();
+	const history = useHistory();
 
 	return (
 		<div className={ styles.root }>
 			{ Object.entries(listItems).map(([property, [text, link]], key)=>(
 				<ListItemLink
 					key={ key }
-					href={ link }
+					onClick={()=>{history.push(link)}}
 					className = { styles.linkItem }
 				>
 					<SideBarIcon name={property} />{ text }
@@ -51,7 +52,7 @@ const SideMenu: FC = () => {
 
 			<Button
 				variant="contained"
-				href="/diaries/create"
+				onClick={()=>{history.push('/diaries/create')}}
 				className={ styles.createButton }
 			>
 				日記を書く

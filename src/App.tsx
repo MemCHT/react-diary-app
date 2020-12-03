@@ -12,6 +12,7 @@ import Calendar from 'containers/molecules/Calendar';
 import Login from 'containers/pages/Login';
 import Register from 'containers/pages/Register';
 import Auth from 'Auth';
+import UnAuth from 'UnAuth';
 import DiaryEdit from 'containers/organisms/Diary/DiaryEdit';
 
 const App: FC = () => {
@@ -19,24 +20,29 @@ const App: FC = () => {
     <div id="App">
       <Header />
       <Switch>
+        {/* Body固定のコンポーネントを表示させないため、分けている。 */}
         <React.Fragment>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-        
-          <Body>
-            <Route path="/counter" component={Counter} />
+          <UnAuth>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+          </UnAuth>
 
-            <Route path="/test">
-              おｋ
-            </Route>
+          <Auth>
+            <Body>
+              <Route path="/counter" component={Counter} />
 
-            <Auth>
+              <Route path="/test">
+                おｋ
+              </Route>
+
+              
               <Route exact path="/diaries" component={DiaryIndex} />
               <Route path="/diaries/create" component={DiaryCreate} />
               <Route path="/diaries/:id/edit" component={DiaryEdit} />
-            </Auth>
-            <Route path="/calendar" component={Calendar} />
-          </Body>
+              
+              <Route path="/calendar" component={Calendar} />
+            </Body>
+          </Auth>
         </React.Fragment>
       </Switch>
     </div>

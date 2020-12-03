@@ -5,7 +5,6 @@ import {  } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import {AuthState} from 'reducer';
-import {login} from 'actions';
 import firebase from 'firebase';
 import {auth, database} from 'config/firebase';
 
@@ -19,9 +18,8 @@ type Props = {
   children: any;  // 仮置き、childrenにあたる部分はなんだろう。
 };
 
-export const Auth: FC<Props> = ({children}) => {
+export const UnAuth: FC<Props> = ({children}) => {
 
-  const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector<AuthState, firebase.User | undefined>((state)=>state.user);
 
@@ -29,18 +27,15 @@ export const Auth: FC<Props> = ({children}) => {
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
       if(user){
-        dispatch(login(user as firebase.User));
-      }else{
-        // alert("ログインしていません");
-        history.push("/login");
+        history.push("/diaries");
       }
     })
   },[]);
 
   if(user)
-    return children;
+    return (<></>);
   else
-    return (<></>)
+    return children;
 }
 
-export default Auth;
+export default UnAuth;

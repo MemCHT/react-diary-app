@@ -41,7 +41,7 @@ const Register: FC<Props> = ({handleChange, handleSubmitRegister, handleBlur, va
 
   return (
     <Grid container justify="center">
-      <Grid md={8}>
+      <Grid item xs={8}>
         <Card className={styles.root}>
           <CardContent>
             <Typography variant='h4' className={styles.formTitle}>新規登録</Typography>

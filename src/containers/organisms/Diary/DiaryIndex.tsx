@@ -61,6 +61,10 @@ const DiaryIndex: FC = () => {
   
     return (event) => {
       event.preventDefault();
+
+      if(window.confirm('日記を削除しますか？') === false)
+        return;
+
       database.collection('diaries').doc(id).delete()
       .then(()=>{
         alert('日記を削除しました！');
