@@ -8,8 +8,8 @@ import {Home as HomeIcon, List as ListIcon, Bookmarks as BookmarksIcon, Person a
 const listItems = {
 	'home': ['ホーム', '/diaries'],
 	'index': ['一覧', '/diaries'],
-	'bookmark': ['ブックマーク', '#'],
-	'mypage': ['マイページ', '#']
+	/*'bookmark': ['ブックマーク', '#'],
+	'mypage': ['マイページ', '#']*/
 };
 
 const useStyles = makeStyles((theme: Theme) => createStyles({

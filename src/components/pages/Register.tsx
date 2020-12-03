@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import { Card, CardContent, TextField, Button, Typography, Link, Grid } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
@@ -38,6 +39,7 @@ export type Props = {
 const Register: FC<Props> = ({handleChange, handleSubmitRegister, handleBlur, validation}) => {
 
   const styles = useStyles();
+  const history = useHistory();
 
   return (
     <Grid container justify="center">
@@ -47,6 +49,17 @@ const Register: FC<Props> = ({handleChange, handleSubmitRegister, handleBlur, va
             <Typography variant='h4' className={styles.formTitle}>新規登録</Typography>
 
             <form onSubmit={handleSubmitRegister} className={styles.formGroup}>
+              <Typography>※開発中のため、テストアカウントをお使いください。</Typography>
+              <Typography>
+                <Button onClick={(event)=>{
+                  event.preventDefault();
+                  history.push('/login');
+                }}
+                  variant="contained"
+                  color="primary">
+                  ▼テストアカウント（ログイン画面）
+                </Button>
+              </Typography>
               <TextField id="email" type="email" name="email" onChange={handleChange} label="メールアドレス" variant='outlined' fullWidth placeholder="example@example.com" {...(validation?.email)} required />
               {/*<Typography>{JSON.stringify(validation)}</Typography>*/}
               <TextField id="password" type="password" name="password" onChange={handleChange} onBlur={handleBlur} label="パスワード" variant='outlined' fullWidth placeholder="hogehoge" {...(validation?.password)} required />

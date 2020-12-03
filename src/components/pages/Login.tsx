@@ -37,6 +37,8 @@ const Login: FC<Props> = ({handleChange, handleSubmitLogin}) => {
             <Typography variant='h4' className={styles.formTitle}>ログイン</Typography>
 
             <form onSubmit={handleSubmitLogin} className={styles.formGroup}>
+              <Typography>※開発中のため、テストアカウントをお使いください。</Typography>
+              <Typography>メールアドレス：<strong>test@example.com</strong>、パスワード：<strong>5F4DCC3B5AA765D61D8327DEB882CF99</strong></Typography>
               <TextField id="email" type="email" name="email" onChange={handleChange} label="メールアドレス" variant='outlined' fullWidth placeholder="example@example.com" required />
               <TextField id="password" type="password" name="password" onChange={handleChange} label="パスワード" variant='outlined' fullWidth placeholder="hogehoge" required />
               <Button id="loginButton" type="submit" variant='contained'>ログイン</Button>

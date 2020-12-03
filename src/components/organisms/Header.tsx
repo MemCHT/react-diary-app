@@ -48,7 +48,12 @@ const Header: FC = () => {
 						<Toolbar className={styles.toolbar}>
 							<div className={styles.toolbarLeft}>
 								<Button variant="outlined" className={styles.toolbarButton}
-									onClick={()=>{history.push('/diaries')}}
+									onClick={()=>{
+										if(user)
+											history.push('/diaries');
+										else
+											history.push('/login');
+									}}
 								>
 									ホーム
 								</Button>
