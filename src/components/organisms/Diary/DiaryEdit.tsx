@@ -71,7 +71,7 @@ const DiaryEdit: FC<Props> = ({date, handleOnSubmit, diary, handleOnChange}) => 
 
             </div>
             <div className={styles.btnGroupCenter}>
-              <Button type="submit" variant="contained" color="secondary">
+              <Button type="submit" variant="contained" color="primary">
                 日記を更新
               </Button>
             </div>

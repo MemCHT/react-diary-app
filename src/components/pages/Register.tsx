@@ -66,7 +66,7 @@ const Register: FC<Props> = ({handleChange, handleSubmitRegister, handleBlur, va
               <TextField id="passwordConfirm" type="password" name="password_confirm" onChange={handleChange} onBlur={handleBlur} label="パスワード（確認）" variant='outlined' fullWidth placeholder="hogehoge" {...validation?.passwordConfirm} required />
               <Button id="registerButton" type="submit" variant='contained'>新規登録</Button>
               <Typography>
-                すでに登録済みの方は<Link href="/login">コチラ</Link>
+                すでに登録済みの方は<Link onClick={()=>{history.push('/login')}}>コチラ</Link>
               </Typography>
             </form>
             

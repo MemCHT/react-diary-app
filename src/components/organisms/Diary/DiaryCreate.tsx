@@ -66,7 +66,7 @@ const DiaryCreate: FC<Props> = ({date, handleOnSubmit}) => {
 
             </div>
             <div className={styles.btnGroupCenter}>
-              <Button type="submit" variant="contained" color="secondary">
+              <Button type="submit" variant="contained" color="primary">
                 日記を追加
               </Button>
             </div>

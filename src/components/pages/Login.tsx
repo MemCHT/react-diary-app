@@ -2,6 +2,8 @@ import React, {FC, useState} from 'react';
 import { Card, CardContent, TextField, Button, Typography, Link, Grid } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
+import { useHistory } from 'react-router-dom';
+
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     marginTop: '3em'
@@ -28,6 +30,7 @@ export type Props = {
 const Login: FC<Props> = ({handleChange, handleSubmitLogin}) => {
 
   const styles = useStyles();
+  const history = useHistory();
 
   return (
     <Grid container justify="center">
@@ -43,7 +46,7 @@ const Login: FC<Props> = ({handleChange, handleSubmitLogin}) => {
               <TextField id="password" type="password" name="password" onChange={handleChange} label="パスワード" variant='outlined' fullWidth placeholder="hogehoge" required />
               <Button id="loginButton" type="submit" variant='contained'>ログイン</Button>
               <Typography>
-                新規登録は<Link href="/register">コチラ</Link>
+                新規登録は<Link onClick={()=>{history.push('/register')}}>コチラ</Link>
               </Typography>
             </form>
             
