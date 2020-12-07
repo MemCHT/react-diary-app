@@ -2,7 +2,6 @@
 reactの習作に日記アプリを作っています。
 
 ## VSCode Setting
-本プロジェクトで用いるVSCodeの設定です。
 
 ### tsx.code-snippets
 ```json
