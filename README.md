@@ -26,7 +26,7 @@ reactの習作に日記アプリを作っています。
 			"",
 			"export default $1;",
 		],
-		"description": "Reactの初期化用です"
+		"description": "tsxの初期化用です"
 	}
 }
 ```
